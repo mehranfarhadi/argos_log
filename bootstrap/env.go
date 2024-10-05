@@ -19,6 +19,11 @@ type Env struct {
 	RefreshTokenExpiryHour int    `mapstructure:"REFRESH_TOKEN_EXPIRY_HOUR"`
 	AccessTokenSecret      string `mapstructure:"ACCESS_TOKEN_SECRET"`
 	RefreshTokenSecret     string `mapstructure:"REFRESH_TOKEN_SECRET"`
+	MQAddress              string `mapstructure:"MQTT_ADDRESS"`
+	MQPort                 int    `mapstructure:"MQTT_PORT"`
+	MQUsername             string `mapstructure:"MQTT_USERNAME"`
+	MQPassword             string `mapstructure:"MQTT_PASSWORD"`
+	MQClientID             string `mapstructure:"MQ_CLIENT_ID"`
 }
 
 func NewEnv() *Env {
