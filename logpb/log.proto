@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package logpb;
+
+option go_package = "github.com/yourrepo/yourproject/proto/logpb";
+
+message Log {
+  string id = 1;
+  string camera_id = 2;
+  double ram = 3;
+  double fan = 4;
+  double board_temp = 5;
+  double cpu = 6;
+  double power_mode = 7;
+  double batt_v = 8;
+  double panel_v = 9;
+  double load_i = 10;
+  double load_v = 11;
+  double charge_i = 12;
+  string charge_stage = 13;
+  string error = 14;
+  string batt_type = 15;
+  string charger_status = 16;
+  double temp = 17;
+  string time = 18;
+  string created_at= 19;
+  double fps = 20;
+}
+
+service UserLog {
+  rpc CreateLog(CreateLogRequest) returns (CreateLogResponse);
+  rpc GetLog(GetLogRequest) returns (GetLogResponse);
+  rpc UpdateLog(UpdateLogRequest) returns (UpdateLogResponse);
+  rpc DeleteLog(DeleteLogRequest) returns (DeleteLogResponse);
+}
+
+message CreateLogRequest {
+  Log log = 1;
+}
+
+message CreateLogResponse {
+  Log log = 1;
+}
+
+
+message GetLogRequest {
+  string id = 1;
+}
+
+message GetLogResponse {
+  Log log = 1;
+}
+
+// Update user request and response
+message UpdateLogRequest {
+  Log log = 1;
+}
+
+message UpdateLogResponse {
+  Log log = 1;
+}
+
+// Delete user request and response
+message DeleteLogRequest {
+  string id = 1;
+}
+
+message DeleteLogResponse {
+  bool success = 1;
+}
