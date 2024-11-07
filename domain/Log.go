@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"time"
 )
@@ -30,4 +31,16 @@ type Log struct {
 	time          time.Time          `bson:"time"`
 	CreatedAt     time.Time          `bson:"created_at"`
 	fps           float32            `bson:"fps"`
+}
+
+type LogRepository interface {
+	Create(c context.Context, log *Log) error
+	FindByID(ctx context.Context, id primitive.ObjectID) (Log, error)
+	FindByTimeRange(ctx context.Context, startTime, endTime time.Time) ([]Log, error)
+}
+
+type LogUsecase interface {
+	CreateLog(ctx context.Context, log *Log) error
+	GetLogByID(ctx context.Context, id primitive.ObjectID) (*Log, error)
+	GetLogsByTimeRange(ctx context.Context, startTime, endTime time.Time) ([]Log, error)
 }
